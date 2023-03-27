@@ -1,0 +1,25 @@
+## Multithreading - Python GIL
+
+### (keyword - Cpython, 메모리관리, GIL사용 이유)
+
+
+
+### GIL(Global Interpreter Lock)
+
+- python 파일도 bytecode로 바뀌어서 CPython이 실행되는 원리
+
+- 실행 시 여러 thread를 사용할 경우 단일 스레드만이 python object에 접근하게 제한하는 mutex
+
+- ex. 스레드를 10개 만들어서 처리하려고 코딩을 해도 한순간에 I/O작업을 만나면 하나밖에 실행이 안 된다. 
+
+- [[python] GIL, Global interpreter Lock은 무엇일까?](https://ssungkang.tistory.com/entry/python-GIL-Global-interpreter-Lock%EC%9D%80-%EB%AC%B4%EC%97%87%EC%9D%BC%EA%B9%8C)
+
+- Cpython 메모리 관리가 취약 (Thread-safe를 위해 GIL사용)
+
+- 단일 스레드로 충분히 빠름
+
+- 병렬처리는 Multiprocessing, asyncio 등 선택지가 다양하다
+
+- 스레드 동시성 완벽 처리를 위해 Jython, stackless Python 등 존재 
+
+
