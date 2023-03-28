@@ -3,12 +3,10 @@ import threading
 import time
 """
 DaemonThread
-
 - 백그라운드에서 실행(스레드 안에서 새롭게 스레드를 만들어 실행)
 - 메인 스레드 종료시 즉시 종료
 - 주로 background 무한 대기 이벤트 발생 실행하는 부분 담당
 - 일반 스레드는 작업 종료시 까지 실행
-
 """
 
 #thread 실행 함수
@@ -51,13 +49,10 @@ if __name__ == "__main__":
 00:15:26: main-Thread: wait for the thread to finish
 00:15:26: main-Thread: all done
 00:15:29: Sub-Thread first: finish
-
 #부모 main thread가 끝나도 child thread는 실행 완료 후 끝남
-
 ---------------------------------------------------------------
 #x.join을 추가할 경우 
 child thread가 끝날때까지 main thread에서 대기
-
 00:17:54: Main-Thread: before creating thread
 00:17:54: Main-Thread: before running thread
 00:17:54: Sub-Thread first: start
