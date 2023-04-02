@@ -1,0 +1,33 @@
+## Parallelism with Multiprocessing
+
+**Concurrent(동시성): **하나의 single core에서 t1, t2에서 별도의 흐름을 생성하여  왔다갔다 하면서 일을처리
+
+**Parallel(병렬성): **multiple core에서 T1, T2 각자 할일을 한다. 
+
+
+
+1. **병렬성(parallelism)**
+
+ - 완전히 동일한 시점에 task를 실행
+
+ - 다양한 파트(부분)으로 나눠서 실행
+
+ - multiprocessing에서 CPU가 1core인 경우 만족하지 않는다.
+
+ - DL, 코인등
+
+
+
+2. **Process vs Thread (차이비교)**
+
+ - 독립된 메모리 vs 공유 메모리
+
+ - 많은 메모리가 필요 vs 적은 메모리 필요
+
+ - 좀비(dead)프로레스 생성 가능성 vs 좀비(dead) 스레드 생성 쉽지 않음
+
+ - 오버헤드 큼 vs 오버헤드 작음
+
+ - 생성/소멸 다소 느림 vs 생성/소멸 다소 빠름
+
+ - 코드 작성은 쉬우나 디버깅은 어려움 vs 코드 작성 어려움/디버깅도 어려움
