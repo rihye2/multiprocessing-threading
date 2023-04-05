@@ -1,0 +1,89 @@
+## Concurrency
+
+**Concurrency(동시성)**
+
+- CPU 가용성 극대화를 위해 Paralleism의 단점 및 어려움을 소프트웨어 레벨에서 해결하기 위한 방법
+
+- 싱글코어에서 멀티스레드 패턴으로 작업을 처리
+
+- 동시 작업에 있어서 일정량 처리 후 다음 작업으로 넘기는 방식
+
+- 제어권(호출한쪽, 호출당한쪽..?)을 주고 받으며 작업 처리를 하는 패턴, 병렬적은 아니지만 유사한 처리 방식
+
+
+
+**Concurrency vs Parralleism(병렬성)**
+
+동시성: 논리적, 동시실행패턴, 싱글코어, 멀티코어에서 실행 가능, 한개의 작업을 공유처리
+
+       디버깅이 매우 어려움, Mutex
+
+병렬성: 물리적, 물리적으로 동시 실행, 멀티코어에서 구현 가능, 주로 별개의 작업 처리, 디버깅 어려움
+
+
+
+### Blocking IO vs Non-blocking IO
+
+**Blocking IO**
+
+- 시스템 콜 요청시(ex. db에서 값을 가져와, 신문기사 크롤링..)
+  -> 커널 IO 작업 완료시 까지 응답 대기 (응답이 오기전까지 계속 대)
+
+- 제어권이 IO작업에 있음 -> 커널이 소유 -> 응답(response)전 까지 대기(Block), 다른 작업 수행 불가함
+
+
+
+**Non-Blocking IO**
+
+- 시스템 콜 요청시 -> 커널 IO작업 완료 여부 상관없이 즉시 응답 
+
+- 제어권(IO작업)에서 user프로세스로 전달 (이때, 다른 작업 수행 가능(지속)) -> 주기적으로 시스템 콜을 통해 IO 작업 완료 여부 확인
+
+
+
+### Async vs Sync
+
+**Async**
+
+- IO작업 완료 여부에 대한 noty는 커널(호출되는 함수)에서 user프로세스(호출하는 함수)로 전달
+
+**Sync**
+
+- IO 작업 완료 여부에 대한 Noty 유저프로세스(호출하는 함수)에서 커널(호출되는 함수)로
+
+
+
+https://velog.io/@tess/Sync-Async-vs-Blocking-non-Blocking
+
++++추가
+
+
+
+
+
+
+
+**CPU Bound**
+
+- 프로세스 진행이 CPU속도에 의해 제한 -> 행렬 곱, 고속연산, 압축파일, 집합 연산
+
+- CPU 연산 위주 작업
+
+**I/O Bound**
+
+- 파일 쓰기, 디스크 작업, 네트워크 통신, 시리얼 포트 송수신
+
+
+
+- **Multiprocessing:** Multiple processes, 고가용성( CPU) utilization ->CPU bound로 처리
+  
+  - ex. 10개 부엌, 10명 요리사, 10개 요리
+
+- **Threading:** single(Multi) process, Multiple threads, OS decides task swithcing
+  
+  - Fast I/O Bound -> 1개 부엌,10명요리사, 10개요
+
+- **AsyncIO**: single process에서 많이 사용, single thread, cooperative multi-tasking,
+  tasks cooperatively decide switching -> slow I/O Bound, 1개 부엌, 1명요리사, 10개요리
+  
+  
